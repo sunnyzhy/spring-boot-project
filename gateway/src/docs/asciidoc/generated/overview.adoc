@@ -1,0 +1,36 @@
+= Api Documentation
+
+
+[[_overview]]
+== Overview
+Api Documentation
+
+
+=== Version information
+[%hardbreaks]
+__Version__ : 1.0
+
+
+=== License information
+[%hardbreaks]
+__License__ : Apache 2.0
+__License URL__ : http://www.apache.org/licenses/LICENSE-2.0
+__Terms of service__ : urn:tos
+
+
+=== URI scheme
+[%hardbreaks]
+__Host__ : localhost:9011
+__BasePath__ : /
+
+
+=== Tags
+
+* authentication-controller : Authentication Controller
+* basic-error-controller : Basic Error Controller
+* operation-handler : Operation Handler
+* user-feign : User Feign
+* web-mvc-endpoint-handler-mapping : Web Mvc Endpoint Handler Mapping
+
+
+
