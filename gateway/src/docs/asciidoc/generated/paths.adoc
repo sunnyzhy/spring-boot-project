@@ -113,10 +113,14 @@ __optional__|body|< string, string > map
 
 
 [[_getuserusingget]]
-=== getUser
+=== 查询用户信息
 ....
 GET /api/user/{name}
 ....
+
+
+==== Description
+根据用户名查询用户信息
 
 
 ==== Parameters
@@ -125,7 +129,7 @@ GET /api/user/{name}
 |===
 |Type|Name|Description|Schema
 |**Path**|**name** +
-__required__|name|string
+__required__|登录的用户名|string
 |===
 
 
@@ -152,10 +156,14 @@ __required__|name|string
 
 
 [[_loginusingpost]]
-=== login
+=== 登录
 ....
 POST /authen/login
 ....
+
+
+==== Description
+用户登录
 
 
 ==== Parameters
@@ -164,7 +172,7 @@ POST /authen/login
 |===
 |Type|Name|Description|Schema
 |**Body**|**user** +
-__required__|user|<<_user,User>>
+__required__|用户实例|<<_user,User>>
 |===
 
 
@@ -197,10 +205,14 @@ __required__|user|<<_user,User>>
 
 
 [[_loginoutusingpost]]
-=== loginOut
+=== 退出登录
 ....
 POST /authen/login-out
 ....
+
+
+==== Description
+用户退出登录
 
 
 ==== Parameters
@@ -208,10 +220,10 @@ POST /authen/login-out
 [options="header", cols=".^2a,.^3a,.^9a,.^4a"]
 |===
 |Type|Name|Description|Schema
-|**Header**|**token** +
+|**Path**|**token** +
 __required__|token|string
 |**Body**|**user** +
-__required__|user|<<_user,User>>
+__required__|用户实例|<<_user,User>>
 |===
 
 
@@ -243,8 +255,8 @@ __required__|user|<<_user,User>>
 * authentication-controller
 
 
-[[_errorhtmlusingpost]]
-=== errorHtml
+[[_errorusingpost]]
+=== error
 ....
 POST /error
 ....
@@ -255,7 +267,7 @@ POST /error
 [options="header", cols=".^2a,.^14a,.^4a"]
 |===
 |HTTP Code|Description|Schema
-|**200**|OK|<<_modelandview,ModelAndView>>
+|**200**|OK|< string, object > map
 |**201**|Created|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
@@ -270,7 +282,7 @@ POST /error
 
 ==== Produces
 
-* `text/html`
+* `\*/*`
 
 
 ==== Tags
@@ -278,8 +290,8 @@ POST /error
 * basic-error-controller
 
 
-[[_errorhtmlusingget]]
-=== errorHtml
+[[_errorusingget]]
+=== error
 ....
 GET /error
 ....
@@ -290,7 +302,7 @@ GET /error
 [options="header", cols=".^2a,.^14a,.^4a"]
 |===
 |HTTP Code|Description|Schema
-|**200**|OK|<<_modelandview,ModelAndView>>
+|**200**|OK|< string, object > map
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
 |**404**|Not Found|No Content
@@ -299,7 +311,7 @@ GET /error
 
 ==== Produces
 
-* `text/html`
+* `\*/*`
 
 
 ==== Tags
@@ -307,8 +319,8 @@ GET /error
 * basic-error-controller
 
 
-[[_errorhtmlusingput]]
-=== errorHtml
+[[_errorusingput]]
+=== error
 ....
 PUT /error
 ....
@@ -319,7 +331,7 @@ PUT /error
 [options="header", cols=".^2a,.^14a,.^4a"]
 |===
 |HTTP Code|Description|Schema
-|**200**|OK|<<_modelandview,ModelAndView>>
+|**200**|OK|< string, object > map
 |**201**|Created|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
@@ -334,7 +346,7 @@ PUT /error
 
 ==== Produces
 
-* `text/html`
+* `\*/*`
 
 
 ==== Tags
@@ -342,8 +354,8 @@ PUT /error
 * basic-error-controller
 
 
-[[_errorhtmlusingdelete]]
-=== errorHtml
+[[_errorusingdelete]]
+=== error
 ....
 DELETE /error
 ....
@@ -354,7 +366,7 @@ DELETE /error
 [options="header", cols=".^2a,.^14a,.^4a"]
 |===
 |HTTP Code|Description|Schema
-|**200**|OK|<<_modelandview,ModelAndView>>
+|**200**|OK|< string, object > map
 |**204**|No Content|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
@@ -363,7 +375,7 @@ DELETE /error
 
 ==== Produces
 
-* `text/html`
+* `\*/*`
 
 
 ==== Tags
@@ -371,8 +383,8 @@ DELETE /error
 * basic-error-controller
 
 
-[[_errorhtmlusingpatch]]
-=== errorHtml
+[[_errorusingpatch]]
+=== error
 ....
 PATCH /error
 ....
@@ -383,7 +395,7 @@ PATCH /error
 [options="header", cols=".^2a,.^14a,.^4a"]
 |===
 |HTTP Code|Description|Schema
-|**200**|OK|<<_modelandview,ModelAndView>>
+|**200**|OK|< string, object > map
 |**204**|No Content|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
@@ -397,7 +409,7 @@ PATCH /error
 
 ==== Produces
 
-* `text/html`
+* `\*/*`
 
 
 ==== Tags
@@ -405,8 +417,8 @@ PATCH /error
 * basic-error-controller
 
 
-[[_errorhtmlusinghead]]
-=== errorHtml
+[[_errorusinghead]]
+=== error
 ....
 HEAD /error
 ....
@@ -417,7 +429,7 @@ HEAD /error
 [options="header", cols=".^2a,.^14a,.^4a"]
 |===
 |HTTP Code|Description|Schema
-|**200**|OK|<<_modelandview,ModelAndView>>
+|**200**|OK|< string, object > map
 |**204**|No Content|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
@@ -431,7 +443,7 @@ HEAD /error
 
 ==== Produces
 
-* `text/html`
+* `\*/*`
 
 
 ==== Tags
@@ -439,8 +451,8 @@ HEAD /error
 * basic-error-controller
 
 
-[[_errorhtmlusingoptions]]
-=== errorHtml
+[[_errorusingoptions]]
+=== error
 ....
 OPTIONS /error
 ....
@@ -451,7 +463,7 @@ OPTIONS /error
 [options="header", cols=".^2a,.^14a,.^4a"]
 |===
 |HTTP Code|Description|Schema
-|**200**|OK|<<_modelandview,ModelAndView>>
+|**200**|OK|< string, object > map
 |**204**|No Content|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
@@ -465,12 +477,542 @@ OPTIONS /error
 
 ==== Produces
 
-* `text/html`
+* `\*/*`
 
 
 ==== Tags
 
 * basic-error-controller
+
+
+[[_homeusingpost]]
+=== home
+....
+POST /hystrix
+....
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `\*/*`
+
+
+==== Tags
+
+* hystrix-dashboard-controller
+
+
+[[_homeusingget]]
+=== home
+....
+GET /hystrix
+....
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+==== Produces
+
+* `\*/*`
+
+
+==== Tags
+
+* hystrix-dashboard-controller
+
+
+[[_homeusingput]]
+=== home
+....
+PUT /hystrix
+....
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `\*/*`
+
+
+==== Tags
+
+* hystrix-dashboard-controller
+
+
+[[_homeusingdelete]]
+=== home
+....
+DELETE /hystrix
+....
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+==== Produces
+
+* `\*/*`
+
+
+==== Tags
+
+* hystrix-dashboard-controller
+
+
+[[_homeusingpatch]]
+=== home
+....
+PATCH /hystrix
+....
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `\*/*`
+
+
+==== Tags
+
+* hystrix-dashboard-controller
+
+
+[[_homeusinghead]]
+=== home
+....
+HEAD /hystrix
+....
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `\*/*`
+
+
+==== Tags
+
+* hystrix-dashboard-controller
+
+
+[[_homeusingoptions]]
+=== home
+....
+OPTIONS /hystrix
+....
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `\*/*`
+
+
+==== Tags
+
+* hystrix-dashboard-controller
+
+
+[[_monitorusingpost]]
+=== monitor
+....
+POST /hystrix/{path}
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**path** +
+__required__|path|string
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `\*/*`
+
+
+==== Tags
+
+* hystrix-dashboard-controller
+
+
+[[_monitorusingget]]
+=== monitor
+....
+GET /hystrix/{path}
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**path** +
+__required__|path|string
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+==== Produces
+
+* `\*/*`
+
+
+==== Tags
+
+* hystrix-dashboard-controller
+
+
+[[_monitorusingput]]
+=== monitor
+....
+PUT /hystrix/{path}
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**path** +
+__required__|path|string
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `\*/*`
+
+
+==== Tags
+
+* hystrix-dashboard-controller
+
+
+[[_monitorusingdelete]]
+=== monitor
+....
+DELETE /hystrix/{path}
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**path** +
+__required__|path|string
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+==== Produces
+
+* `\*/*`
+
+
+==== Tags
+
+* hystrix-dashboard-controller
+
+
+[[_monitorusingpatch]]
+=== monitor
+....
+PATCH /hystrix/{path}
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**path** +
+__required__|path|string
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `\*/*`
+
+
+==== Tags
+
+* hystrix-dashboard-controller
+
+
+[[_monitorusinghead]]
+=== monitor
+....
+HEAD /hystrix/{path}
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**path** +
+__required__|path|string
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `\*/*`
+
+
+==== Tags
+
+* hystrix-dashboard-controller
+
+
+[[_monitorusingoptions]]
+=== monitor
+....
+OPTIONS /hystrix/{path}
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**path** +
+__required__|path|string
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|string
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `\*/*`
+
+
+==== Tags
+
+* hystrix-dashboard-controller
 
 
 

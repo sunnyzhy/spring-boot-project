@@ -28,6 +28,7 @@ __BasePath__ : /
 
 * authentication-controller : Authentication Controller
 * basic-error-controller : Basic Error Controller
+* hystrix-dashboard-controller : Hystrix Dashboard Controller
 * operation-handler : Operation Handler
 * user-feign : User Feign
 * web-mvc-endpoint-handler-mapping : Web Mvc Endpoint Handler Mapping
