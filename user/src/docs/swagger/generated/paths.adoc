@@ -1,0 +1,455 @@
+
+[[_paths]]
+== Resources
+
+[[_api-controller_resource]]
+=== Api-controller
+Api Controller
+
+
+[[_getuserusingget]]
+==== getUser
+....
+GET /api/user/{name}
+....
+
+
+===== Description
+根据用户名获取用户信息
+
+
+===== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**name** +
+__required__|name|string
+|**Path**|**userName** +
+__required__|用户名|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_5ed10da099170afb4e45996092b10ae4,ResponseVO«TUser»>>
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `\*/*`
+
+
+[[_basic-error-controller_resource]]
+=== Basic-error-controller
+Basic Error Controller
+
+
+[[_errorusingpost]]
+==== error
+....
+POST /error
+....
+
+
+===== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< string, object > map
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `\*/*`
+
+
+[[_errorusingget]]
+==== error
+....
+GET /error
+....
+
+
+===== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< string, object > map
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `\*/*`
+
+
+[[_errorusingput]]
+==== error
+....
+PUT /error
+....
+
+
+===== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< string, object > map
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `\*/*`
+
+
+[[_errorusingdelete]]
+==== error
+....
+DELETE /error
+....
+
+
+===== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< string, object > map
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Produces
+
+* `\*/*`
+
+
+[[_errorusingpatch]]
+==== error
+....
+PATCH /error
+....
+
+
+===== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< string, object > map
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `\*/*`
+
+
+[[_errorusinghead]]
+==== error
+....
+HEAD /error
+....
+
+
+===== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< string, object > map
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `\*/*`
+
+
+[[_errorusingoptions]]
+==== error
+....
+OPTIONS /error
+....
+
+
+===== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< string, object > map
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `\*/*`
+
+
+[[_user-controller_resource]]
+=== User-controller
+User Controller
+
+
+[[_addusingpost]]
+==== add
+....
+POST /user
+....
+
+
+===== Description
+添加用户
+
+
+===== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Body**|**user** +
+__required__|用户实例|<<_tuser,TUser>>
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_5ed10da099170afb4e45996092b10ae4,ResponseVO«TUser»>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `\*/*`
+
+
+[[_updateusingput]]
+==== update
+....
+PUT /user
+....
+
+
+===== Description
+修改用户
+
+
+===== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Body**|**user** +
+__required__|用户实例|<<_tuser,TUser>>
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_5ed10da099170afb4e45996092b10ae4,ResponseVO«TUser»>>
+|**201**|Created|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Consumes
+
+* `application/json`
+
+
+===== Produces
+
+* `\*/*`
+
+
+[[_selectallusingget]]
+==== selectAll
+....
+GET /user/all
+....
+
+
+===== Description
+查询所有用户
+
+
+===== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_8651168c9d79cbecb224768b0f7a2b35,ResponseVO«PageVO«TUser»»>>
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `\*/*`
+
+
+[[_selectpageusingget]]
+==== selectPage
+....
+GET /user/page
+....
+
+
+===== Description
+查询分页用户
+
+
+===== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**name** +
+__required__|姓名|string
+|**Path**|**pageNum** +
+__required__|分页的页号|ref
+|**Path**|**pageSize** +
+__required__|每页显示的记录数|ref
+|**Query**|**num** +
+__required__|num|integer (int32)
+|**Query**|**size** +
+__required__|size|integer (int32)
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_8651168c9d79cbecb224768b0f7a2b35,ResponseVO«PageVO«TUser»»>>
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `\*/*`
+
+
+[[_deleteusingdelete]]
+==== delete
+....
+DELETE /user/{id}
+....
+
+
+===== Description
+删除用户
+
+
+===== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**id** +
+__required__|用户的记录id|ref
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_2e896b4f29a2b4e929e2d288dcb1c731,ResponseVO«int»>>
+|**204**|No Content|No Content
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|===
+
+
+===== Produces
+
+* `\*/*`
+
+
+

@@ -1,28 +1,12 @@
 package com.zhy.user.vo;
 
-import org.springframework.stereotype.Component;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Data;
 
-@Component
-public class ResponseVO {
-    public ResultVO success() {
-        ResultVO resultVO = new ResultVO();
-        resultVO.setCode(0);
-        resultVO.setMsg("success");
-        return resultVO;
-    }
-
-    public ResultVO success(Object data) {
-        ResultVO resultVO = new ResultVO();
-        resultVO.setCode(0);
-        resultVO.setMsg("success");
-        resultVO.setData(data);
-        return resultVO;
-    }
-
-    public ResultVO error(Integer code, String msg) {
-        ResultVO resultVO = new ResultVO();
-        resultVO.setCode(code);
-        resultVO.setMsg(msg);
-        return resultVO;
-    }
+@Data
+public class ResponseVO<T> {
+    private Integer code;
+    private String msg;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private T data;
 }

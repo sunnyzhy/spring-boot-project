@@ -1,172 +1,24 @@
 
 [[_paths]]
-== Paths
+== Resources
 
-[[_linksusingget]]
-=== links
-....
-GET /actuator
-....
-
-
-==== Responses
-
-[options="header", cols=".^2a,.^14a,.^4a"]
-|===
-|HTTP Code|Description|Schema
-|**200**|OK|< string, < string, <<_link,Link>> > map > map
-|**401**|Unauthorized|No Content
-|**403**|Forbidden|No Content
-|**404**|Not Found|No Content
-|===
-
-
-==== Produces
-
-* `application/json`
-* `application/vnd.spring-boot.actuator.v2+json`
-
-
-==== Tags
-
-* web-mvc-endpoint-handler-mapping
-
-
-[[_handleusingget]]
-=== handle
-....
-GET /actuator/health
-....
-
-
-==== Parameters
-
-[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
-|===
-|Type|Name|Description|Schema
-|**Body**|**body** +
-__optional__|body|< string, string > map
-|===
-
-
-==== Responses
-
-[options="header", cols=".^2a,.^14a,.^4a"]
-|===
-|HTTP Code|Description|Schema
-|**200**|OK|object
-|**401**|Unauthorized|No Content
-|**403**|Forbidden|No Content
-|**404**|Not Found|No Content
-|===
-
-
-==== Produces
-
-* `application/json`
-* `application/vnd.spring-boot.actuator.v2+json`
-
-
-==== Tags
-
-* operation-handler
-
-
-[[_handleusingget_1]]
-=== handle
-....
-GET /actuator/info
-....
-
-
-==== Parameters
-
-[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
-|===
-|Type|Name|Description|Schema
-|**Body**|**body** +
-__optional__|body|< string, string > map
-|===
-
-
-==== Responses
-
-[options="header", cols=".^2a,.^14a,.^4a"]
-|===
-|HTTP Code|Description|Schema
-|**200**|OK|object
-|**401**|Unauthorized|No Content
-|**403**|Forbidden|No Content
-|**404**|Not Found|No Content
-|===
-
-
-==== Produces
-
-* `application/json`
-* `application/vnd.spring-boot.actuator.v2+json`
-
-
-==== Tags
-
-* operation-handler
-
-
-[[_getuserusingget]]
-=== 查询用户信息
-....
-GET /api/user/{name}
-....
-
-
-==== Description
-根据用户名查询用户信息
-
-
-==== Parameters
-
-[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
-|===
-|Type|Name|Description|Schema
-|**Path**|**name** +
-__required__|登录的用户名|string
-|===
-
-
-==== Responses
-
-[options="header", cols=".^2a,.^14a,.^4a"]
-|===
-|HTTP Code|Description|Schema
-|**200**|OK|<<_7e899e30fe3c4ec8ba39ba75dc56053f,ResultVO«User»>>
-|**401**|Unauthorized|No Content
-|**403**|Forbidden|No Content
-|**404**|Not Found|No Content
-|===
-
-
-==== Produces
-
-* `\*/*`
-
-
-==== Tags
-
-* user-feign
+[[_authentication-controller_resource]]
+=== Authentication-controller
+Authentication Controller
 
 
 [[_loginusingpost]]
-=== 登录
+==== login
 ....
 POST /authen/login
 ....
 
 
-==== Description
+===== Description
 用户登录
 
 
-==== Parameters
+===== Parameters
 
 [options="header", cols=".^2a,.^3a,.^9a,.^4a"]
 |===
@@ -176,7 +28,7 @@ __required__|用户实例|<<_user,User>>
 |===
 
 
-==== Responses
+===== Responses
 
 [options="header", cols=".^2a,.^14a,.^4a"]
 |===
@@ -189,33 +41,28 @@ __required__|用户实例|<<_user,User>>
 |===
 
 
-==== Consumes
+===== Consumes
 
 * `application/json`
 
 
-==== Produces
+===== Produces
 
 * `\*/*`
 
 
-==== Tags
-
-* authentication-controller
-
-
 [[_loginoutusingpost]]
-=== 退出登录
+==== loginOut
 ....
 POST /authen/login-out
 ....
 
 
-==== Description
+===== Description
 用户退出登录
 
 
-==== Parameters
+===== Parameters
 
 [options="header", cols=".^2a,.^3a,.^9a,.^4a"]
 |===
@@ -227,7 +74,7 @@ __required__|用户实例|<<_user,User>>
 |===
 
 
-==== Responses
+===== Responses
 
 [options="header", cols=".^2a,.^14a,.^4a"]
 |===
@@ -240,34 +87,34 @@ __required__|用户实例|<<_user,User>>
 |===
 
 
-==== Consumes
+===== Consumes
 
 * `application/json`
 
 
-==== Produces
+===== Produces
 
 * `\*/*`
 
 
-==== Tags
+[[_basic-error-controller_resource]]
+=== Basic-error-controller
+Basic Error Controller
 
-* authentication-controller
 
-
-[[_errorusingpost]]
-=== error
+[[_errorhtmlusingpost]]
+==== errorHtml
 ....
 POST /error
 ....
 
 
-==== Responses
+===== Responses
 
 [options="header", cols=".^2a,.^14a,.^4a"]
 |===
 |HTTP Code|Description|Schema
-|**200**|OK|< string, object > map
+|**200**|OK|<<_modelandview,ModelAndView>>
 |**201**|Created|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
@@ -275,63 +122,53 @@ POST /error
 |===
 
 
-==== Consumes
+===== Consumes
 
 * `application/json`
 
 
-==== Produces
+===== Produces
 
-* `\*/*`
-
-
-==== Tags
-
-* basic-error-controller
+* `text/html`
 
 
-[[_errorusingget]]
-=== error
+[[_errorhtmlusingget]]
+==== errorHtml
 ....
 GET /error
 ....
 
 
-==== Responses
+===== Responses
 
 [options="header", cols=".^2a,.^14a,.^4a"]
 |===
 |HTTP Code|Description|Schema
-|**200**|OK|< string, object > map
+|**200**|OK|<<_modelandview,ModelAndView>>
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
 |**404**|Not Found|No Content
 |===
 
 
-==== Produces
+===== Produces
 
-* `\*/*`
-
-
-==== Tags
-
-* basic-error-controller
+* `text/html`
 
 
-[[_errorusingput]]
-=== error
+[[_errorhtmlusingput]]
+==== errorHtml
 ....
 PUT /error
 ....
 
 
-==== Responses
+===== Responses
 
 [options="header", cols=".^2a,.^14a,.^4a"]
 |===
 |HTTP Code|Description|Schema
-|**200**|OK|< string, object > map
+|**200**|OK|<<_modelandview,ModelAndView>>
 |**201**|Created|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
@@ -339,160 +176,140 @@ PUT /error
 |===
 
 
-==== Consumes
+===== Consumes
 
 * `application/json`
 
 
-==== Produces
+===== Produces
 
-* `\*/*`
-
-
-==== Tags
-
-* basic-error-controller
+* `text/html`
 
 
-[[_errorusingdelete]]
-=== error
+[[_errorhtmlusingdelete]]
+==== errorHtml
 ....
 DELETE /error
 ....
 
 
-==== Responses
+===== Responses
 
 [options="header", cols=".^2a,.^14a,.^4a"]
 |===
 |HTTP Code|Description|Schema
-|**200**|OK|< string, object > map
+|**200**|OK|<<_modelandview,ModelAndView>>
 |**204**|No Content|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
 |===
 
 
-==== Produces
+===== Produces
 
-* `\*/*`
-
-
-==== Tags
-
-* basic-error-controller
+* `text/html`
 
 
-[[_errorusingpatch]]
-=== error
+[[_errorhtmlusingpatch]]
+==== errorHtml
 ....
 PATCH /error
 ....
 
 
-==== Responses
+===== Responses
 
 [options="header", cols=".^2a,.^14a,.^4a"]
 |===
 |HTTP Code|Description|Schema
-|**200**|OK|< string, object > map
+|**200**|OK|<<_modelandview,ModelAndView>>
 |**204**|No Content|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
 |===
 
 
-==== Consumes
+===== Consumes
 
 * `application/json`
 
 
-==== Produces
+===== Produces
 
-* `\*/*`
-
-
-==== Tags
-
-* basic-error-controller
+* `text/html`
 
 
-[[_errorusinghead]]
-=== error
+[[_errorhtmlusinghead]]
+==== errorHtml
 ....
 HEAD /error
 ....
 
 
-==== Responses
+===== Responses
 
 [options="header", cols=".^2a,.^14a,.^4a"]
 |===
 |HTTP Code|Description|Schema
-|**200**|OK|< string, object > map
+|**200**|OK|<<_modelandview,ModelAndView>>
 |**204**|No Content|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
 |===
 
 
-==== Consumes
+===== Consumes
 
 * `application/json`
 
 
-==== Produces
+===== Produces
 
-* `\*/*`
-
-
-==== Tags
-
-* basic-error-controller
+* `text/html`
 
 
-[[_errorusingoptions]]
-=== error
+[[_errorhtmlusingoptions]]
+==== errorHtml
 ....
 OPTIONS /error
 ....
 
 
-==== Responses
+===== Responses
 
 [options="header", cols=".^2a,.^14a,.^4a"]
 |===
 |HTTP Code|Description|Schema
-|**200**|OK|< string, object > map
+|**200**|OK|<<_modelandview,ModelAndView>>
 |**204**|No Content|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
 |===
 
 
-==== Consumes
+===== Consumes
 
 * `application/json`
 
 
-==== Produces
+===== Produces
 
-* `\*/*`
+* `text/html`
 
 
-==== Tags
-
-* basic-error-controller
+[[_hystrix-dashboard-controller_resource]]
+=== Hystrix-dashboard-controller
+Hystrix Dashboard Controller
 
 
 [[_homeusingpost]]
-=== home
+==== home
 ....
 POST /hystrix
 ....
 
 
-==== Responses
+===== Responses
 
 [options="header", cols=".^2a,.^14a,.^4a"]
 |===
@@ -505,29 +322,24 @@ POST /hystrix
 |===
 
 
-==== Consumes
+===== Consumes
 
 * `application/json`
 
 
-==== Produces
+===== Produces
 
 * `\*/*`
 
 
-==== Tags
-
-* hystrix-dashboard-controller
-
-
 [[_homeusingget]]
-=== home
+==== home
 ....
 GET /hystrix
 ....
 
 
-==== Responses
+===== Responses
 
 [options="header", cols=".^2a,.^14a,.^4a"]
 |===
@@ -539,24 +351,19 @@ GET /hystrix
 |===
 
 
-==== Produces
+===== Produces
 
 * `\*/*`
 
 
-==== Tags
-
-* hystrix-dashboard-controller
-
-
 [[_homeusingput]]
-=== home
+==== home
 ....
 PUT /hystrix
 ....
 
 
-==== Responses
+===== Responses
 
 [options="header", cols=".^2a,.^14a,.^4a"]
 |===
@@ -569,29 +376,24 @@ PUT /hystrix
 |===
 
 
-==== Consumes
+===== Consumes
 
 * `application/json`
 
 
-==== Produces
+===== Produces
 
 * `\*/*`
 
 
-==== Tags
-
-* hystrix-dashboard-controller
-
-
 [[_homeusingdelete]]
-=== home
+==== home
 ....
 DELETE /hystrix
 ....
 
 
-==== Responses
+===== Responses
 
 [options="header", cols=".^2a,.^14a,.^4a"]
 |===
@@ -603,24 +405,19 @@ DELETE /hystrix
 |===
 
 
-==== Produces
+===== Produces
 
 * `\*/*`
 
 
-==== Tags
-
-* hystrix-dashboard-controller
-
-
 [[_homeusingpatch]]
-=== home
+==== home
 ....
 PATCH /hystrix
 ....
 
 
-==== Responses
+===== Responses
 
 [options="header", cols=".^2a,.^14a,.^4a"]
 |===
@@ -632,29 +429,24 @@ PATCH /hystrix
 |===
 
 
-==== Consumes
+===== Consumes
 
 * `application/json`
 
 
-==== Produces
+===== Produces
 
 * `\*/*`
 
 
-==== Tags
-
-* hystrix-dashboard-controller
-
-
 [[_homeusinghead]]
-=== home
+==== home
 ....
 HEAD /hystrix
 ....
 
 
-==== Responses
+===== Responses
 
 [options="header", cols=".^2a,.^14a,.^4a"]
 |===
@@ -666,29 +458,24 @@ HEAD /hystrix
 |===
 
 
-==== Consumes
+===== Consumes
 
 * `application/json`
 
 
-==== Produces
+===== Produces
 
 * `\*/*`
 
 
-==== Tags
-
-* hystrix-dashboard-controller
-
-
 [[_homeusingoptions]]
-=== home
+==== home
 ....
 OPTIONS /hystrix
 ....
 
 
-==== Responses
+===== Responses
 
 [options="header", cols=".^2a,.^14a,.^4a"]
 |===
@@ -700,29 +487,24 @@ OPTIONS /hystrix
 |===
 
 
-==== Consumes
+===== Consumes
 
 * `application/json`
 
 
-==== Produces
+===== Produces
 
 * `\*/*`
 
 
-==== Tags
-
-* hystrix-dashboard-controller
-
-
 [[_monitorusingpost]]
-=== monitor
+==== monitor
 ....
 POST /hystrix/{path}
 ....
 
 
-==== Parameters
+===== Parameters
 
 [options="header", cols=".^2a,.^3a,.^9a,.^4a"]
 |===
@@ -732,7 +514,7 @@ __required__|path|string
 |===
 
 
-==== Responses
+===== Responses
 
 [options="header", cols=".^2a,.^14a,.^4a"]
 |===
@@ -745,29 +527,24 @@ __required__|path|string
 |===
 
 
-==== Consumes
+===== Consumes
 
 * `application/json`
 
 
-==== Produces
+===== Produces
 
 * `\*/*`
 
 
-==== Tags
-
-* hystrix-dashboard-controller
-
-
 [[_monitorusingget]]
-=== monitor
+==== monitor
 ....
 GET /hystrix/{path}
 ....
 
 
-==== Parameters
+===== Parameters
 
 [options="header", cols=".^2a,.^3a,.^9a,.^4a"]
 |===
@@ -777,7 +554,7 @@ __required__|path|string
 |===
 
 
-==== Responses
+===== Responses
 
 [options="header", cols=".^2a,.^14a,.^4a"]
 |===
@@ -789,24 +566,19 @@ __required__|path|string
 |===
 
 
-==== Produces
+===== Produces
 
 * `\*/*`
 
 
-==== Tags
-
-* hystrix-dashboard-controller
-
-
 [[_monitorusingput]]
-=== monitor
+==== monitor
 ....
 PUT /hystrix/{path}
 ....
 
 
-==== Parameters
+===== Parameters
 
 [options="header", cols=".^2a,.^3a,.^9a,.^4a"]
 |===
@@ -816,7 +588,7 @@ __required__|path|string
 |===
 
 
-==== Responses
+===== Responses
 
 [options="header", cols=".^2a,.^14a,.^4a"]
 |===
@@ -829,29 +601,24 @@ __required__|path|string
 |===
 
 
-==== Consumes
+===== Consumes
 
 * `application/json`
 
 
-==== Produces
+===== Produces
 
 * `\*/*`
 
 
-==== Tags
-
-* hystrix-dashboard-controller
-
-
 [[_monitorusingdelete]]
-=== monitor
+==== monitor
 ....
 DELETE /hystrix/{path}
 ....
 
 
-==== Parameters
+===== Parameters
 
 [options="header", cols=".^2a,.^3a,.^9a,.^4a"]
 |===
@@ -861,7 +628,7 @@ __required__|path|string
 |===
 
 
-==== Responses
+===== Responses
 
 [options="header", cols=".^2a,.^14a,.^4a"]
 |===
@@ -873,24 +640,19 @@ __required__|path|string
 |===
 
 
-==== Produces
+===== Produces
 
 * `\*/*`
 
 
-==== Tags
-
-* hystrix-dashboard-controller
-
-
 [[_monitorusingpatch]]
-=== monitor
+==== monitor
 ....
 PATCH /hystrix/{path}
 ....
 
 
-==== Parameters
+===== Parameters
 
 [options="header", cols=".^2a,.^3a,.^9a,.^4a"]
 |===
@@ -900,7 +662,7 @@ __required__|path|string
 |===
 
 
-==== Responses
+===== Responses
 
 [options="header", cols=".^2a,.^14a,.^4a"]
 |===
@@ -912,29 +674,24 @@ __required__|path|string
 |===
 
 
-==== Consumes
+===== Consumes
 
 * `application/json`
 
 
-==== Produces
+===== Produces
 
 * `\*/*`
 
 
-==== Tags
-
-* hystrix-dashboard-controller
-
-
 [[_monitorusinghead]]
-=== monitor
+==== monitor
 ....
 HEAD /hystrix/{path}
 ....
 
 
-==== Parameters
+===== Parameters
 
 [options="header", cols=".^2a,.^3a,.^9a,.^4a"]
 |===
@@ -944,7 +701,7 @@ __required__|path|string
 |===
 
 
-==== Responses
+===== Responses
 
 [options="header", cols=".^2a,.^14a,.^4a"]
 |===
@@ -956,29 +713,24 @@ __required__|path|string
 |===
 
 
-==== Consumes
+===== Consumes
 
 * `application/json`
 
 
-==== Produces
+===== Produces
 
 * `\*/*`
 
 
-==== Tags
-
-* hystrix-dashboard-controller
-
-
 [[_monitorusingoptions]]
-=== monitor
+==== monitor
 ....
 OPTIONS /hystrix/{path}
 ....
 
 
-==== Parameters
+===== Parameters
 
 [options="header", cols=".^2a,.^3a,.^9a,.^4a"]
 |===
@@ -988,7 +740,7 @@ __required__|path|string
 |===
 
 
-==== Responses
+===== Responses
 
 [options="header", cols=".^2a,.^14a,.^4a"]
 |===
@@ -1000,19 +752,162 @@ __required__|path|string
 |===
 
 
-==== Consumes
+===== Consumes
 
 * `application/json`
 
 
-==== Produces
+===== Produces
 
 * `\*/*`
 
 
-==== Tags
+[[_operation-handler_resource]]
+=== Operation-handler
+Operation Handler
 
-* hystrix-dashboard-controller
+
+[[_handleusingget]]
+==== handle
+....
+GET /actuator/health
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Body**|**body** +
+__optional__|body|< string, string > map
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|object
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `application/json`
+* `application/vnd.spring-boot.actuator.v2+json`
+
+
+[[_handleusingget_1]]
+==== handle
+....
+GET /actuator/info
+....
+
+
+===== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Body**|**body** +
+__optional__|body|< string, string > map
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|object
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `application/json`
+* `application/vnd.spring-boot.actuator.v2+json`
+
+
+[[_user-feign_resource]]
+=== User-feign
+User Feign
+
+
+[[_getuserusingget]]
+==== getUser
+....
+GET /api/user/{name}
+....
+
+
+===== Description
+根据用户名查询用户信息
+
+
+===== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**name** +
+__required__|登录的用户名|string
+|===
+
+
+===== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|<<_7e899e30fe3c4ec8ba39ba75dc56053f,ResultVO«User»>>
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `\*/*`
+
+
+[[_web-mvc-endpoint-handler-mapping_resource]]
+=== Web-mvc-endpoint-handler-mapping
+Web Mvc Endpoint Handler Mapping
+
+
+[[_linksusingget]]
+==== links
+....
+GET /actuator
+....
+
+
+===== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< string, < string, <<_link,Link>> > map > map
+|**401**|Unauthorized|No Content
+|**403**|Forbidden|No Content
+|**404**|Not Found|No Content
+|===
+
+
+===== Produces
+
+* `application/json`
+* `application/vnd.spring-boot.actuator.v2+json`
 
 
 

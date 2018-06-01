@@ -15,7 +15,7 @@
 
         <!-- 配置数据库连接 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://ip:port/dbName?useSSL=false"
+                        connectionURL="jdbc:mysql://20.0.0.252/zhy?useSSL=false"
                         userId="root"
                         password="root">
         </jdbcConnection>

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * 认证
  */
-@Api(value = "认证")
+@Api(value = "AuthenticationController")
 @RestController
 @RequestMapping(value = "/authen")
 public class AuthenticationController {
@@ -25,7 +25,7 @@ public class AuthenticationController {
      * @param user
      * @return
      */
-    @ApiOperation(value = "登录", notes = "用户登录")
+    @ApiOperation(value = "login", notes = "用户登录")
     @ApiImplicitParam(name = "user", value = "用户实例", required = true, paramType = "body", dataType = "User")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResultVO login(@RequestBody User user) {
@@ -38,7 +38,7 @@ public class AuthenticationController {
      * @param user
      * @return
      */
-    @ApiOperation(value = "退出登录", notes = "用户退出登录")
+    @ApiOperation(value = "loginOut", notes = "用户退出登录")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "token", value = "token", required = true, paramType = "path", dataType = "String"),
             @ApiImplicitParam(name = "user", value = "用户实例", required = true, paramType = "body", dataType = "User")
