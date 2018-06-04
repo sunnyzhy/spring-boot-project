@@ -4,7 +4,7 @@ import com.zhy.user.vo.ResponseVO;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ResponseUtilVO {
+public class ResponseVoUtil {
     public ResponseVO success() {
         ResponseVO resultVO = new ResponseVO();
         resultVO.setCode(0);

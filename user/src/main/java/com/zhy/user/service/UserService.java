@@ -3,8 +3,8 @@ package com.zhy.user.service;
 import com.github.pagehelper.PageHelper;
 import com.zhy.user.mapper.TUserMapper;
 import com.zhy.user.model.TUser;
-import com.zhy.user.utils.PageUtilVO;
-import com.zhy.user.utils.ResponseUtilVO;
+import com.zhy.user.utils.PageVoUtil;
+import com.zhy.user.utils.ResponseVoUtil;
 import com.zhy.user.vo.ResponseVO;
 import com.zhy.user.vo.PageVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +22,9 @@ public class UserService {
     @Autowired
     private TUserMapper userMapper;
     @Autowired
-    private ResponseUtilVO responseUtilVO;
+    private ResponseVoUtil responseVoUtil;
     @Autowired
-    private PageUtilVO pageUtilVO;
+    private PageVoUtil pageVoUtil;
 
     /**
      * 根据用户名获取用户信息
@@ -37,9 +37,9 @@ public class UserService {
         user.setUserName(userName);
         TUser one = userMapper.selectOne(user);
         if (one == null) {
-            return responseUtilVO.error(-1, "用户名不存在");
+            return responseVoUtil.error(-1, "用户名不存在");
         }
-        return responseUtilVO.success(one);
+        return responseVoUtil.success(one);
     }
 
     /**
@@ -56,9 +56,9 @@ public class UserService {
                 user.setId(null);
             }
             userMapper.insertSelective(user);
-            return responseUtilVO.success(user);
+            return responseVoUtil.success(user);
         } else {
-            return responseUtilVO.error(-1, "用户名已存在");
+            return responseVoUtil.error(-1, "用户名已存在");
         }
     }
 
@@ -70,11 +70,11 @@ public class UserService {
      */
     public ResponseVO<TUser> update(TUser user) {
         if (userMapper.selectByPrimaryKey(user) == null) {
-            return responseUtilVO.error(-1, "该用户不存在");
+            return responseVoUtil.error(-1, "该用户不存在");
         } else {
             user.setUserName(null);
             userMapper.updateByPrimaryKeySelective(user);
-            return responseUtilVO.success(user);
+            return responseVoUtil.success(user);
         }
     }
 
@@ -86,7 +86,7 @@ public class UserService {
      */
     public ResponseVO<Integer> delete(Integer id) {
         userMapper.deleteByPrimaryKey(id);
-        return responseUtilVO.success(id);
+        return responseVoUtil.success(id);
     }
 
     /**
@@ -104,7 +104,7 @@ public class UserService {
             example.createCriteria().andLike("name", "%" + name + "%");
         }
         List<TUser> userList = userMapper.selectByExample(example);
-        return responseUtilVO.success(pageUtilVO.create(userList));
+        return responseVoUtil.success(pageVoUtil.create(userList));
     }
 
     /**
@@ -114,6 +114,6 @@ public class UserService {
      */
     public ResponseVO<PageVO<TUser>> selectAll() {
         List<TUser> userList = userMapper.selectAll();
-        return responseUtilVO.success(pageUtilVO.create(userList));
+        return responseVoUtil.success(pageVoUtil.create(userList));
     }
 }
