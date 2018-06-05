@@ -1,6 +1,7 @@
 package com.zhy.gateway.service;
 
 import com.zhy.gateway.feign.UserFeign;
+import com.zhy.gateway.model.TUser;
 import com.zhy.gateway.model.User;
 import com.zhy.gateway.vo.ResponseVO;
 import com.zhy.gateway.vo.ResultVO;
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Component;
  * 用于服务之间调用，即没有在配置文件里配置过的路由，例如登录请求
  */
 @Component
-public class UserServiceFallbackFactory implements FallbackFactory<UserFeign> {
+public class UserFeignFallbackFactory implements FallbackFactory<UserFeign> {
     @Autowired
     private ResponseVO responseVO;
 
@@ -21,7 +22,7 @@ public class UserServiceFallbackFactory implements FallbackFactory<UserFeign> {
     public UserFeign create(Throwable throwable) {
         return new UserFeign(){
             @Override
-            public ResultVO<User> getUser(String name) {
+            public ResultVO<TUser> getUser(String name) {
                 return responseVO.error(501, "The server is unavailable.");
             }
         };

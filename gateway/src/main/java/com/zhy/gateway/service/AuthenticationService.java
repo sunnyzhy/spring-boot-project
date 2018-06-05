@@ -2,6 +2,7 @@ package com.zhy.gateway.service;
 
 import com.zhy.gateway.feign.UserFeign;
 import com.zhy.gateway.jwt.Jwt;
+import com.zhy.gateway.model.TUser;
 import com.zhy.gateway.model.User;
 import com.zhy.gateway.vo.ResponseVO;
 import com.zhy.gateway.vo.ResultVO;
@@ -16,18 +17,22 @@ public class AuthenticationService {
     @Autowired
     private ResponseVO responseVO;
     @Autowired
-    private UserFeign userService;
+    private UserFeign userFeign;
     @Autowired
     private Jwt jwt;
 
     public ResultVO login(User user) {
-        ResultVO<User> resultVO = userService.getUser(user.getName());
+        ResultVO<TUser> resultVO = userFeign.getUser(user.getName());
         if (resultVO.getCode() != 0) {
             return resultVO;
         }
-        User userVO = resultVO.getData();
+        TUser userVO = resultVO.getData();
+        User usr = new User();
+        usr.setId(userVO.getId());
+        usr.setName(userVO.getName());
+        usr.setPassword(userVO.getPassword());
         if (userVO.getPassword().equals(user.getPassword())) {
-            return responseVO.success(jwt.createToken(userVO));
+            return responseVO.success(jwt.createToken(usr));
         } else {
             return responseVO.error(-1, "用户名或密码错误!");
         }
