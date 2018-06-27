@@ -2,12 +2,14 @@ package com.zhy.activitiserver.service;
 
 import com.zhy.activitiserver.model.ApproveVO;
 import com.zhy.activitiserver.model.ApplyVO;
+import com.zhy.activitiserver.model.HisTaskVO;
 import com.zhy.activitiserver.model.TaskVO;
 import com.zhy.activitiserver.utils.ResponseVoUtil;
 import com.zhy.activitiserver.vo.ResponseVO;
 import org.activiti.bpmn.model.BpmnModel;
 import org.activiti.engine.*;
 import org.activiti.engine.history.HistoricProcessInstance;
+import org.activiti.engine.history.HistoricTaskInstance;
 import org.activiti.engine.identity.Group;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
@@ -88,12 +90,11 @@ public class ActivitiService {
     }
 
     /**
-     * 查询任务列表
-     *
+     * 查询用户所属的角色
      * @param userId
      * @return
      */
-    public ResponseVO<List<TaskVO>> getTask(String userId) {
+    private List<String> getGroup(String userId){
         //  查询用户所属的角色
         List<Group> groupList = identityService.createGroupQuery()
                 .groupMember(userId)
@@ -104,6 +105,19 @@ public class ActivitiService {
                 .map(group -> group.getId())
                 .collect(Collectors.toList());
 
+        return groupIdList;
+    }
+
+    /**
+     * 查询待办任务，先根据用户名查询用户所属的角色，再查询角色所分派的任务
+     *
+     * @param userId
+     * @return
+     */
+    public ResponseVO<List<TaskVO>> getTask(String userId) {
+        //  查询用户所属的角色
+        List<String> groupIdList = getGroup(userId);
+
         //  分页查询，pageNum从0开始
         List<Task> taskList = taskService.createTaskQuery()
                 .processDefinitionKey(processKey)
@@ -113,6 +127,8 @@ public class ActivitiService {
         List<TaskVO> taskVOList = taskList.parallelStream()
                 .map(task -> {
                     TaskVO taskVO = new TaskVO();
+                    taskVO.setName(task.getName());
+                    taskVO.setAssignee(task.getAssignee());
                     taskVO.setProcessId(task.getProcessInstanceId());
                     taskVO.setTaskId(task.getId());
                     taskVO.setCreateTime(task.getCreateTime());
@@ -122,34 +138,33 @@ public class ActivitiService {
         return responseVoUtil.success(taskVOList);
     }
 
-//    public ResponseVO<List<TaskVO>> getHisTask(String userId) {
-//        //  查询用户所属的角色
-//        List<Group> groupList = identityService.createGroupQuery()
-//                .groupMember(userId)
-//                .list();
-//
-//        //  过滤出角色id
-//        List<String> groupIdList = groupList.parallelStream()
-//                .map(group -> group.getId())
-//                .collect(Collectors.toList());
-//
-//        //  分页查询，pageNum从0开始
-//        List<Task> taskList = historyService.createHistoricActivityInstanceQuery().createTaskQuery()
-//                .processDefinitionKey(processKey)
-//                .taskCandidateGroupIn(groupIdList)
-//                .listPage(0, 20);
-//
-//        List<TaskVO> taskVOList = taskList.parallelStream()
-//                .map(task -> {
-//                    TaskVO taskVO = new TaskVO();
-//                    taskVO.setProcessId(task.getProcessInstanceId());
-//                    taskVO.setTaskId(task.getId());
-//                    taskVO.setCreateTime(task.getCreateTime());
-//                    return taskVO;
-//                })
-//                .collect(Collectors.toList());
-//        return responseVoUtil.success(taskVOList);
-//    }
+    /**
+     * 查询已办任务，根据用户名查询用户所完成的任务
+     * @param userId
+     * @return
+     */
+    public ResponseVO<List<HisTaskVO>> getHisTask(String userId) {
+        List<HistoricTaskInstance>  taskList = historyService
+                .createHistoricTaskInstanceQuery()
+                .taskAssignee(userId)
+                .finished()
+                .orderByTaskId()
+                .desc()
+                .list();
+        List<HisTaskVO> taskVOList = taskList.parallelStream()
+                .map(task -> {
+                    HisTaskVO taskVO = new HisTaskVO();
+                    taskVO.setName(task.getName());
+                    taskVO.setProcessId(task.getProcessInstanceId());
+                    taskVO.setTaskId(task.getId());
+                    taskVO.setAssignee(task.getAssignee());
+                    taskVO.setStartTime(task.getStartTime());
+                    taskVO.setEndTime(task.getEndTime());
+                    return taskVO;
+                })
+                .collect(Collectors.toList());
+        return responseVoUtil.success(taskVOList);
+    }
 
     /**
      * 审批

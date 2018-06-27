@@ -2,6 +2,7 @@ package com.zhy.activitiserver.controller;
 
 import com.zhy.activitiserver.model.ApproveVO;
 import com.zhy.activitiserver.model.ApplyVO;
+import com.zhy.activitiserver.model.HisTaskVO;
 import com.zhy.activitiserver.model.TaskVO;
 import com.zhy.activitiserver.service.ActivitiService;
 import com.zhy.activitiserver.vo.ResponseVO;
@@ -29,6 +30,11 @@ public class ActivitiController {
     @RequestMapping(value = "/task/{id}", method = RequestMethod.GET)
     public ResponseVO<List<TaskVO>> getTask(@PathVariable("id") String userId) {
         return activitiService.getTask(userId);
+    }
+
+    @RequestMapping(value = "/task/his/{id}", method = RequestMethod.GET)
+    public ResponseVO<List<HisTaskVO>> getHisTask(@PathVariable("id") String userId) {
+        return activitiService.getHisTask(userId);
     }
 
     @RequestMapping(value = "/approve", method = RequestMethod.POST)
