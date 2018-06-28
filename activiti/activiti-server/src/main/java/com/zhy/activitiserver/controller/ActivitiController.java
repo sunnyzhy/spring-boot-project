@@ -1,9 +1,6 @@
 package com.zhy.activitiserver.controller;
 
-import com.zhy.activitiserver.model.ApproveVO;
-import com.zhy.activitiserver.model.ApplyVO;
-import com.zhy.activitiserver.model.HisTaskVO;
-import com.zhy.activitiserver.model.TaskVO;
+import com.zhy.activitiserver.model.*;
 import com.zhy.activitiserver.service.ActivitiService;
 import com.zhy.activitiserver.vo.ResponseVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +18,11 @@ import java.util.List;
 public class ActivitiController {
     @Autowired
     private ActivitiService activitiService;
+
+    @RequestMapping(value = "/new",method = RequestMethod.POST)
+    public ResponseVO newModel(@RequestBody ActDeModelWithBLOBs model){
+        return activitiService.newModel(model);
+    }
 
     @RequestMapping(value = "/apply", method = RequestMethod.POST)
     public ResponseVO apply(@RequestBody ApplyVO applyVO) {

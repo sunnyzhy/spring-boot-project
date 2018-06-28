@@ -1,9 +1,6 @@
 package com.zhy.activitiserver.service;
 
-import com.zhy.activitiserver.model.ApproveVO;
-import com.zhy.activitiserver.model.ApplyVO;
-import com.zhy.activitiserver.model.HisTaskVO;
-import com.zhy.activitiserver.model.TaskVO;
+import com.zhy.activitiserver.model.*;
 import com.zhy.activitiserver.utils.ResponseVoUtil;
 import com.zhy.activitiserver.vo.ResponseVO;
 import org.activiti.bpmn.model.BpmnModel;
@@ -39,8 +36,19 @@ public class ActivitiService {
     private FormService formService;
     @Autowired
     private ProcessEngine processEngine;
+    @Autowired
+    private ActDeModelService actDeModelService;
 
     private String processKey = "vaction";
+
+    /**
+     * 新建工作流
+     * @param model
+     * @return
+     */
+    public ResponseVO newModel(ActDeModelWithBLOBs model){
+        return actDeModelService.newModel(model);
+    }
 
     /**
      * 初始化角色
