@@ -4,6 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+/**
+ * @author zhy
+ * @date 2018/7/17 16:41
+ **/
 @SpringBootApplication
 @EnableTransactionManagement
 public class ActivitiServer5Application {

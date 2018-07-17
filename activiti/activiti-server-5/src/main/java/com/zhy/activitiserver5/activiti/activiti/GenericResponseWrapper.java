@@ -6,6 +6,10 @@ import javax.servlet.http.HttpServletResponseWrapper;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintWriter;
 
+/**
+ * @author zhy
+ * @date 2018/7/17 16:41
+ **/
 public class GenericResponseWrapper extends HttpServletResponseWrapper {
     private ByteArrayOutputStream output;
     private int contentLength;
@@ -20,14 +24,17 @@ public class GenericResponseWrapper extends HttpServletResponseWrapper {
         return output.toByteArray();
     }
 
+    @Override
     public ServletOutputStream getOutputStream() {
         return new FilterServletOutputStream(output);
     }
 
+    @Override
     public PrintWriter getWriter() {
         return new PrintWriter(getOutputStream(), true);
     }
 
+    @Override
     public void setContentLength(int length) {
         this.contentLength = length;
         super.setContentLength(length);
@@ -37,11 +44,13 @@ public class GenericResponseWrapper extends HttpServletResponseWrapper {
         return contentLength;
     }
 
+    @Override
     public void setContentType(String type) {
         this.contentType = type;
         super.setContentType(type);
     }
 
+    @Override
     public String getContentType() {
         return contentType;
     }

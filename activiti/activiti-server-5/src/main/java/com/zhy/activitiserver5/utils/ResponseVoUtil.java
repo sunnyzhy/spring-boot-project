@@ -3,6 +3,10 @@ package com.zhy.activitiserver5.utils;
 import com.zhy.activitiserver5.vo.ResponseVO;
 import org.springframework.stereotype.Component;
 
+/**
+ * @author zhy
+ * @date 2018/7/17 16:41
+ **/
 @Component
 public class ResponseVoUtil {
     public ResponseVO success() {

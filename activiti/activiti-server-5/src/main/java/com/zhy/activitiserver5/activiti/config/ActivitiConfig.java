@@ -8,9 +8,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.PlatformTransactionManager;
 
 /**
- * @author: felix.
- * @createTime: 2017/9/29.
- */
+ * @author zhy
+ * @date 2018/7/17 16:41
+ **/
 @Configuration
 public class ActivitiConfig {
 
@@ -25,7 +25,8 @@ public class ActivitiConfig {
         SpringProcessEngineConfiguration config = new SpringProcessEngineConfiguration();
         config.setDataSource(druidDataSource);
         config.setTransactionManager(transactionManager);
-        config.setDatabaseType("mysql");// 必须小写。。。，不配置的话，activiti会根据DataSource去判断的
+        // 必须小写，不配置的话，activiti会根据DataSource去判断的
+        config.setDatabaseType("mysql");
         config.setDatabaseSchemaUpdate("true");
 
         //流程图字体
