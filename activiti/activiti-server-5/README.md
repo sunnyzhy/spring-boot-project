@@ -63,5 +63,75 @@ public BeanPostProcessor activitiConfigurer() {
 }
 ```
 
+# 自定义流程图片生成器，解决工作流连线不显示文字的问题
+1. 重写ProcessDiagramCanvas
+```
+/**
+ * @author zhy
+ * @date 2018/7/17 16:41
+ * 自定义工作流连线的字体样式
+ */
+public class MyProcessDiagramCanvas extends DefaultProcessDiagramCanvas {
+    public MyProcessDiagramCanvas(int width, int height, int minX, int minY, String imageType, String activityFontName, String labelFontName, String annotationFontName, ClassLoader customClassLoader) {
+        super(width, height, minX, minY, imageType, activityFontName, labelFontName, annotationFontName, customClassLoader);
+    }
+
+    @Override
+    public void initialize(String imageType) {
+        // 父类代码
+        
+        //11号，加粗
+        LABEL_FONT = new Font(this.labelFontName, 1, 11);
+        //黑色
+        LABEL_COLOR = new Color(0, 0, 0);
+        
+        // 父类代码
+    }
+}
+```
+
+2. 重写ProcessDiagramGenerator
+```
+/**
+ * @author zhy
+ * @date 2018/7/17 16:41
+ * 自定义流程图片生成器，解决工作流连线不显示文字的问题
+ */
+@Component
+public class MyProcessDiagramGenerator extends DefaultProcessDiagramGenerator {
+    @Override
+    protected void drawActivity(DefaultProcessDiagramCanvas processDiagramCanvas, BpmnModel bpmnModel,
+                                FlowNode flowNode, List<String> highLightedActivities, List<String> highLightedFlows, double scaleFactor) {
+                // 父类代码
+                
+                // Draw sequenceflow label
+                GraphicInfo labelGraphicInfo = bpmnModel.getLabelGraphicInfo(sequenceFlow.getId());
+                if (labelGraphicInfo != null) {
+                    processDiagramCanvas.drawLabel(sequenceFlow.getName(), labelGraphicInfo, false);
+                } else {
+                    GraphicInfo lineCenter = getLineCenter(graphicInfoList);
+                    processDiagramCanvas.drawLabel(sequenceFlow.getName(), lineCenter, false);
+                }
+                
+                // 父类代码
+    }
+
+    private static void drawHighLight(DefaultProcessDiagramCanvas processDiagramCanvas, GraphicInfo graphicInfo) {
+        processDiagramCanvas.drawHighLight((int) graphicInfo.getX(), (int) graphicInfo.getY(), (int) graphicInfo.getWidth(), (int) graphicInfo.getHeight());
+    }
+
+    @Override
+    protected DefaultProcessDiagramCanvas generateProcessDiagram(BpmnModel bpmnModel, String imageType, List<String> highLightedActivities, List<String> highLightedFlows, String activityFontName, String labelFontName, String annotationFontName, ClassLoader customClassLoader, double scaleFactor) {
+        // 父类代码
+    }
+
+    protected static DefaultProcessDiagramCanvas initProcessDiagramCanvas(BpmnModel bpmnModel, String imageType, String activityFontName, String labelFontName, String annotationFontName, ClassLoader customClassLoader) {
+        // 父类代码
+        
+        return new MyProcessDiagramCanvas((int) maxX + 10, (int) maxY + 10, (int) minX, (int) minY, imageType, activityFontName, labelFontName, annotationFontName, customClassLoader);
+    }
+}
+```
+
 # 打开activiti编辑器
 http://localhost:8086/modeler.html?modelId=1
