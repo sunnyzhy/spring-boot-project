@@ -16,7 +16,7 @@ main
 # 添加自定义的表单数据类型
 1. 在编辑器中添加自定义的数据类型
 ```
-打开 src\main\resources\static\editor-app\configuration\properties\form-properties-popup.html，查找 typeField, 在<select></select>中添加<option>float</option>
+打开 src\main\resources\static\editor-app\configuration\properties\form-properties-popup.html，查找 typeField, 在 <select></select> 中添加 <option>float</option>
 ```
 
 2. 定义数据类型的解析类
