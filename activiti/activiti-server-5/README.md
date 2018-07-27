@@ -20,7 +20,7 @@ main
 ```
 
 2. 定义数据类型的解析类
-```
+```java
 public class FloatFormType extends AbstractFormType {
     @Override
     public Object convertFormValueToModelValue(String s) {
@@ -40,7 +40,7 @@ public class FloatFormType extends AbstractFormType {
 ```
 
 3. 把自定义的表单数据类型注册到流程引擎
-```
+```java
 @Bean
 public BeanPostProcessor activitiConfigurer() {
     return new BeanPostProcessor() {
@@ -65,7 +65,7 @@ public BeanPostProcessor activitiConfigurer() {
 
 # 自定义流程图片生成器，解决工作流连线不显示文字的问题
 1. 重写ProcessDiagramCanvas
-```
+```java
 /**
  * @author zhy
  * @date 2018/7/17 16:41
@@ -91,7 +91,7 @@ public class MyProcessDiagramCanvas extends DefaultProcessDiagramCanvas {
 ```
 
 2. 重写ProcessDiagramGenerator
-```
+```java
 /**
  * @author zhy
  * @date 2018/7/17 16:41
