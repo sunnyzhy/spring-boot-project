@@ -1,4 +1,3 @@
-[TOC]
 # 集成activiti编辑器
 ```
 main
@@ -136,3 +135,40 @@ public class MyProcessDiagramGenerator extends DefaultProcessDiagramGenerator {
 
 # 打开activiti编辑器
 http://localhost:8086/modeler.html?modelId=1
+
+# Activiti在linux环境中流程图不显示汉字的问题
+```
+# echo $JAVA_HOME
+/usr/java/jdk1.8.0_151
+
+# cd /usr/java/jdk1.8.0_151/jre/lib/fonts
+
+# rz --选择C:\Windows\Fonts\STSONG.TTF(华文宋体 常规)
+
+# mkfontscale
+
+# cat fonts.scale | grep iso10646
+LucidaBrightDemiBold.ttf -b&h-lucida bright-bold-r-normal--0-0-0-0-p-0-iso10646-1
+LucidaBrightDemiItalic.ttf -b&h-lucida bright-bold-i-normal--0-0-0-0-p-0-iso10646-1
+LucidaBrightItalic.ttf -b&h-lucida bright-medium-i-normal--0-0-0-0-p-0-iso10646-1
+LucidaBrightRegular.ttf -b&h-lucida bright-medium-r-normal--0-0-0-0-p-0-iso10646-1
+LucidaSansDemiBold.ttf -b&h-lucida sans-bold-r-normal--0-0-0-0-p-0-iso10646-1
+LucidaSansRegular.ttf -b&h-lucida sans-medium-r-normal--0-0-0-0-p-0-iso10646-1
+LucidaTypewriterBold.ttf -b&h-lucida sans typewriter-bold-r-normal--0-0-0-0-m-0-iso10646-1
+LucidaTypewriterRegular.ttf -b&h-lucida sans typewriter-medium-r-normal--0-0-0-0-m-0-iso10646-1
+STSONG.TTF -misc-stsong-medium-r-normal--0-0-0-0-p-0-iso10646-1
+
+# vim fontconfig.properties --allfonts.chinese-arphic1=后面出现的就是刚才命令查询iso10646出来的结果
+version=1
+
+allfonts.chinese-arphic1=-b&h-lucida bright-bold-r-normal--0-0-0-0-p-0-iso10646-1
+allfonts.chinese-arphic1=-b&h-lucida bright-bold-i-normal--0-0-0-0-p-0-iso10646-1
+allfonts.chinese-arphic1=-b&h-lucida bright-medium-i-normal--0-0-0-0-p-0-iso10646-1
+allfonts.chinese-arphic1=-b&h-lucida bright-medium-r-normal--0-0-0-0-p-0-iso10646-1
+allfonts.chinese-arphic1=-b&h-lucida sans-bold-r-normal--0-0-0-0-p-0-iso10646-1
+allfonts.chinese-arphic1=-b&h-lucida sans-medium-r-normal--0-0-0-0-p-0-iso10646-1
+allfonts.chinese-arphic1=-b&h-lucida sans typewriter-bold-r-normal--0-0-0-0-m-0-iso10646-1
+allfonts.chinese-arphic1=-b&h-lucida sans typewriter-medium-r-normal--0-0-0-0-m-0-iso10646-1
+allfonts.chinese-arphic1=-misc-stsong-medium-r-normal--0-0-0-0-p-0-iso10646-1
+```
+
